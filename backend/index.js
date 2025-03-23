@@ -1,3 +1,4 @@
+// server/index.js
 const express = require("express");
 const cors = require("cors");
 const { Sequelize, DataTypes } = require("sequelize");
@@ -5,7 +6,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-//esto es un middleware que nos permite recibir y enviar datos en formato JSON
+// Middleware para recibir y enviar datos en formato JSON
 app.use(cors());
 app.use(express.json());
 
@@ -23,7 +24,7 @@ const Post = sequelize.define("Post", {
 
 // Rutas
 app.get("/posts", async (req, res) => {
-  const posts = await Post.findAll();
+  const posts = await Post.findAll({ order: [["createdAt", "DESC"]] });
   res.json(posts);
 });
 

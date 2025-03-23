@@ -1,21 +1,15 @@
+// components/Post.js
 import React from "react";
-import { FaCalendarAlt } from "react-icons/fa";
-import "./Post.css";
 
 function Post({ post }) {
-  const date = new Date(post.createdAt).toLocaleDateString("es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   return (
     <div className="post-card">
-      <h3 className="post-title">{post.title}</h3>
+      <h2 className="post-title">{post.title}</h2>
       <p className="post-content">{post.content}</p>
-      <div className="post-date">
-        <FaCalendarAlt />
-        <span>{date}</span>
+      <div className="post-footer">
+        <span className="post-date">
+          {new Date(post.createdAt).toLocaleDateString()}
+        </span>
       </div>
     </div>
   );

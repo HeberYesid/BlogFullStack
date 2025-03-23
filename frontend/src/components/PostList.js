@@ -1,3 +1,4 @@
+// components/PostList.js
 import React, { useState, useEffect } from "react";
 import Post from "./Post";
 
@@ -9,7 +10,7 @@ function PostList() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("/api/posts");
+        const response = await fetch("http://localhost:3001/posts");
         if (!response.ok) throw new Error("Error del servidor");
         const data = await response.json();
         setPosts(data);
@@ -23,7 +24,8 @@ function PostList() {
     fetchPosts();
   }, []);
 
-  if (loading) return <div className="loading">⏳ Cargando publicaciones...</div>;
+  if (loading)
+    return <div className="loading">⏳ Cargando publicaciones...</div>;
   if (error) return <div className="error-message">🚨 {error}</div>;
 
   return (

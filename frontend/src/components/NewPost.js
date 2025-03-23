@@ -1,3 +1,4 @@
+// components/NewPost.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const NewPost = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/posts", {
+      const response = await fetch("http://localhost:3001/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,6 +49,5 @@ const NewPost = () => {
     </div>
   );
 };
-// components/NewPost.js
-// Al final del archivo:
-export default NewPost; // <-- Asegurar esta línea
+
+export default NewPost;
