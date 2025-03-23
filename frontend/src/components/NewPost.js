@@ -1,6 +1,8 @@
 // components/NewPost.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const NewPost = () => {
   const [title, setTitle] = useState("");
@@ -11,22 +13,16 @@ const NewPost = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title, content }),
+      await addDoc(collection(db, "posts"), {
+        title,
+        content,
+        createdAt: new Date().toISOString(),
       });
-
-      if (response.ok) {
-        navigate("/");
-      }
+      navigate("/");
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
   return (
     <div className="new-post-form">
       <h2>Crear Nuevo Post</h2>
