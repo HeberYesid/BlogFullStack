@@ -23,6 +23,7 @@ function PostList() {
     fetchPosts();
   }, []);
 
+  if (loading) return <div className="loading">⏳ Cargando publicaciones...</div>;
   if (error) return <div className="error-message">🚨 {error}</div>;
 
   return (
@@ -35,6 +36,5 @@ function PostList() {
     </div>
   );
 }
-// components/PostList.js
-// Al final del archivo debe tener:
-export default PostList; // <-- Esta línea debe existir
+
+export default PostList;
