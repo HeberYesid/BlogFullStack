@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PostList from "./components/PostList";
 import NewPost from "./components/NewPost";
 import "./App.css";
+import { db } from "./firebase"; // Importamos la instancia de Firestore
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
 
       <main className="container">
         <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/new" element={<NewPost />} />
+          <Route path="/" element={<PostList db={db} />} />
+          <Route path="/new" element={<NewPost db={db} />} />
         </Routes>
       </main>
     </Router>
