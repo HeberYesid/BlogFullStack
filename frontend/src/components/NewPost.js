@@ -10,7 +10,7 @@ const NewPost = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3001/posts", {
+      const response = await fetch("/api/posts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
